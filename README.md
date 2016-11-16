@@ -6,6 +6,5 @@ Once you sign up and log in, you can easily start creating your own short post-i
 
 All these features are built using Ajax which means there is no refresh need to make the aforementioned changes. This makes the app feel quick and responsive. 
 
-Branch | Details
---- | --- | ---
-**without-ajax** | Django app to create and display notes
+Built with: Python, JavaScript, Django, JQuery, JQuery UI, AJAX, HTML, CSS. 
+
