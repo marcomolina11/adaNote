@@ -1,7 +1,11 @@
-#Ajax Posts
+#.adaNote
 
-This app introduces Coding Dojo students to Ajax techniques in the context of a Django server. See the table below for branch details:
+This web app allows you to create notes for yourself to help you stay organized. 
+
+Once you sign up and log in, you can easily start creating your own short post-it-note-style notes. Rearrangeing your notes is as simple as draggin and dropping. Editing them is as simple as clicking on the filed you want to edit, edititng the content, and hitting enter. 
+
+All these features are built using Ajax which means there is no refresh need to make the aforementioned changes. This makes the app feel quick and responsive. 
 
 Branch | Details
 --- | --- | ---
-**without-ajax** | Simple Django app to create and display posts (no JavaScript yet)
+**without-ajax** | Django app to create and display notes
