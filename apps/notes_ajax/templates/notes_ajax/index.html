@@ -1,0 +1,70 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Notes | .adaNote</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{% static 'notes_ajax/js/ajax.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'notes_ajax/css/style.css' %}">
+</head>
+<body>
+<div id="wrapper">
+	<div class="navbar">
+		<h1 id="title"><a href="{% url 'notes:welcome' %}">.ada<span>N</span>ote</a></h1>
+		<img id='plus-icon' class='large-icon' src="{% static 'notes_ajax/images/plus_icon_square_white.png' %}">
+		<div id="menu">
+			<img id='menu-icon' class='large-icon' src="{% static 'notes_ajax/images/menu_icon.png' %}">
+		</div>
+	</div>
+	<div class="form_div">
+		<img id='minus-icon' class='large-icon' src="{% static 'notes_ajax/images/minus_icon_square_white.png' %}">
+		<form class="create_form" action="{% url 'notes:notes' %}" method="POST">
+			{% csrf_token %}
+			{{ new_note_form.as_p }}
+			<button type="submit">Add Note</button>
+		</form>
+	</div>
+	<div class="menu_div">
+		<h3>Menu</h3><img id='close-menu-icon' class='large-icon' src="{% static 'notes_ajax/images/close_menu_icon.png' %}">
+		<ul>
+			<li>
+				<a href="{% url 'login:logout' %}">Log Out</a>
+			</li>
+		</ul>
+	</div>
+	<div class="notes-wrapper">
+	<h2>.notes</h2>
+	<div id="sortable">
+	{% if notes %}
+	{% spaceless %}
+		{% for note in notes %}
+				<div id="note_{{note.id}}" class="note">
+					<form class="title_form" action="{% url 'notes:update_title' %}" method="POST">
+					{% csrf_token %}
+						<h3 class="notetitle">{{ note.title }}</h3>
+						<input type="hidden" name="id" value="{{note.id}}">
+					</form>
+					<form class="delete_form" action="{% url 'notes:delete' %}" method="POST">
+					{% csrf_token %}
+						<button class="btn_delete" name="{{note.id}}" type="submit">Delete</button>
+						<input type="hidden" name="id" value="{{note.id}}">
+					</form>
+					<form class="update_form" action="{% url 'notes:update_desc' %}" method="POST">
+					{% csrf_token %}
+						<p class="desc">{{ note.description }}</p>
+						<input type="hidden" name="id" value="{{note.id}}">
+					</form>
+				</div>
+		{% endfor %}
+	{% endspaceless %}
+	{% else %}
+		<h1 id="nonotes">You have no notes yet!</h1>
+		<h3 id="nonotessub">Click the plus sign above to add a note.</h3>
+	{% endif %}
+	</div>
+</div>	
+</body>
+</html>
