@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 from django.db import models
 from re import match, search
 from bcrypt import hashpw, gensalt
+from django.template.defaultfilters import escape
+from django.core.urlresolvers import reverse
 
 class UserManager(models.Manager):
     def register(self, email, first_name, last_name, password, confirm_password, csrfmiddlewaretoken):
@@ -71,7 +73,7 @@ class UserManager(models.Manager):
             messagelist.append("Last Name must be at least 2 characters long")
         elif search(r'[^a-zA-Z]', last_name):
             messagelist.append("Last Name must only contain letters")
-        
+
         #validations
         if len(messageList) > 0:
             return (False, messageList)

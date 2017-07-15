@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
 from django.db import models
 from ..login.models import User
+from django.template.defaultfilters import escape
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 class NoteManager(models.Manager):
@@ -53,3 +55,8 @@ class Note(models.Model):
 	def __str__(self):
 		return self.title
 
+	def user_link(self):
+		return '<a href="%s">%s</a>' % (reverse("admin:auth_user_change", args=(self.user_id.id,)) , escape(self.user_id))
+
+	user_link.allow_tags = True
+	user_link.short_description = "User"

@@ -3,7 +3,7 @@ from .models import Note
 # Register your models here.
 
 class NoteAdmin(admin.ModelAdmin):
-	list_display = ('title', 'id', 'list_order', 'user_id')
+	list_display = ('title', 'id', 'list_order', 'user_id', 'user_link')
 	list_filter = ['user_id']
 
 admin.site.register(Note, NoteAdmin)
