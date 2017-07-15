@@ -7,7 +7,7 @@ $(document).ready(function(){
 			method: 'post',
 			data: $(this).serialize(),
 			success: function(serverRespose){
-				console.log("Received this from server: ", serverRespose);
+				// console.log("Received this from server: ", serverRespose);
 				$("#sortable").html(serverRespose);
 				$("#sortable").serialize_and_update();
 			}
@@ -23,8 +23,8 @@ $(document).ready(function(){
 			method: 'post',
 			data: $(this).serialize(),
 			success: function(serverRespose){
-				console.log("Deleted a Note");
-				console.log("Received this from server: ", serverRespose);
+				// console.log("Deleted a Note");
+				// console.log("Received this from server: ", serverRespose);
 				$("#sortable").html(serverRespose);
 	    		$("#sortable").serialize_and_update();
 			}
@@ -38,8 +38,8 @@ $(document).ready(function(){
 			method: 'post',
 			data: $(this).serialize(),
 			success: function(serverRespose){
-				console.log("Updated a Note Description");
-				console.log("Received this from server: ", serverRespose);
+				// console.log("Updated a Note Description");
+				// console.log("Received this from server: ", serverRespose);
 				$("#sortable").html(serverRespose);
 				$("#sortable").serialize_and_update();
 			}
@@ -53,8 +53,8 @@ $(document).ready(function(){
 			method: 'post',
 			data: $(this).serialize(),
 			success: function(serverRespose){
-				console.log("Updated a Note Title")
-				console.log("Received this from server: ", serverRespose);
+				// console.log("Updated a Note Title")
+				// console.log("Received this from server: ", serverRespose);
 				$("#sortable").html(serverRespose);
 				$("#sortable").serialize_and_update();
 			}
@@ -167,7 +167,7 @@ $(document).ready(function(){
 		this.sortable({
 	    	update: function(event, ui){
         		var serial = $(this).sortable('serialize');
-        		console.log(serial);
+        		// console.log(serial);
        		
     			$.ajax({
      				url: "/users/update_order",
@@ -181,7 +181,7 @@ $(document).ready(function(){
 
 	$.fn.serialize_and_update = function(){
 		var serial = this.sortable('serialize');
-		console.log(serial);
+		// console.log(serial);
 		$.ajax({
      		url: "/users/update_order",
      		type: "post",
